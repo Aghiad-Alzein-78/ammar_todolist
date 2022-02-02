@@ -64,9 +64,7 @@ class TasksScreen extends StatelessWidget {
                     Radius.circular(20),
                   ),
                 ),
-                child: TasksList(
-                  tasks,
-                ),
+                child: TasksList(),
               ),
             ),
           ],
@@ -76,23 +74,18 @@ class TasksScreen extends StatelessWidget {
         backgroundColor: Colors.indigo[400],
         onPressed: () {
           showModalBottomSheet(
-              isScrollControlled: true,
-              context: context,
-              builder: (context) {
-                return SingleChildScrollView(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: AddTaskScreen((newTask) {
-//  tasks.add(
-//       Task(name: taskName),
-//     );
-//     Navigator.pop(context);
-//     setState(() {});
-                    }),
-                  ),
-                );
-              });
+            isScrollControlled: true,
+            context: context,
+            builder: (context) {
+              return SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: AddTaskScreen(),
+                ),
+              );
+            },
+          );
         },
         child: Icon(Icons.add),
       ),
