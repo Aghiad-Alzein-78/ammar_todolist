@@ -1,32 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app_ammar/models/task_data.dart';
 import '../screens/add_screen_task.dart';
 import '../widgets/task_list.dart';
+import 'package:provider/provider.dart';
 import '../models/task.dart';
 
-class TasksScreen extends StatefulWidget {
-  const TasksScreen({Key? key}) : super(key: key);
-
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Go Shopping'),
-    Task(name: 'Buy a gift'),
-    Task(name: 'Repair the car'),
-    Task(name: 'Walk the cat'),
-  ];
-  void addToTasks(String taskName) {
-    tasks.add(
-      Task(name: taskName),
-    );
-    Navigator.pop(context);
-    setState(() {});
-  }
+class TasksScreen extends StatelessWidget {
+  void addToTasks(String taskName) {}
 
   @override
   Widget build(BuildContext context) {
+    List<Task> tasks = Provider.of<TaskData>(context).tasks;
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: Colors.teal[400],
@@ -99,9 +83,13 @@ class _TasksScreenState extends State<TasksScreen> {
                   child: Container(
                     padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: AddTaskScreen(
-                      addToTasks,
-                    ),
+                    child: AddTaskScreen((newTask) {
+//  tasks.add(
+//       Task(name: taskName),
+//     );
+//     Navigator.pop(context);
+//     setState(() {});
+                    }),
                   ),
                 );
               });
